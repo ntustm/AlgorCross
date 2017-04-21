@@ -1,3 +1,6 @@
+# Title:
+# Author: Willis Chu
+
 #include <stdio.h>
 
 const int SPACE_SIZE = 27;
