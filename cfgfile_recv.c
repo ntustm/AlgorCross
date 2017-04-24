@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define SPACE_SIZE	27
+#define SPACE_SIZE	28
 #define NOT_MATCH	-1
 #define false		0
 #define true		1
@@ -71,7 +71,12 @@ int searchTrie(Trie root, char* word) {
 	char *p = word;  
 	int pos;
     while(*p && (NULL!=node)) { 
-		pos = (' '==*p) ? (SPACE_SIZE-1) : (*p-'a');
+    	if((*p>='a')&&(*p<='z'))
+			pos = *p-'a';
+		else if (*p==' ')
+			pos = SPACE_SIZE-1;
+		else
+			pos = SPACE_SIZE-2;
         node = node->next[pos];  
         p++; 
     }
@@ -117,13 +122,12 @@ int insertAllPatern_2 (Trie root, int id, char* cmd, int len_cmd, char* opt, int
 	return 0;
 }
 
-void DBG(char*);
 
-int main(void)
+void main(void)
 {
 	int i,j;
 	CtwNode* root_node = createNode();
-	char instr[256];
+	char instr[2048];
 	char *strCmdList[6] = {
 		"reset",
 		"reset board",
@@ -139,8 +143,9 @@ int main(void)
 		"no board at all",
 		"impossible",
 		"install first",
-		"unkown command"
+		"unknown command"
 	};
+//freopen("testcase1.txt","r",stdin);  
 	// initial trie tree
 	insertAllPatern_1 (root_node, 0, "reset\0", 5);
 	insertAllPatern_2 (root_node, 1, "reset\0", 5, "board\0", 5);
@@ -148,18 +153,13 @@ int main(void)
 	insertAllPatern_2 (root_node, 3, "board\0", 5, "delet\0", 5);
 	insertAllPatern_2 (root_node, 4, "reboot\0", 6, "backplane\0", 9);
 	insertAllPatern_2 (root_node, 5, "backplane\0", 9, "abort\0", 5);
-printf("InputCMD:\n");
-	while(NULL != gets(instr)) {
+//printf("InputCMD:\n");
+	while(gets(instr)) {
 		i = searchTrie(root_node, instr);
 		if (i>NOT_MATCH) 
 			printf("%s\n", strResList[i]);
 		else
 			printf("%s\n", strResList[6]);	
 	}
-	return 0;
 }
 
-void DBG(char* str) {
-	printf("%s\npress any key to continue\n", str);
-	getch();
-}
