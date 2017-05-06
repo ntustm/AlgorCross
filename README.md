@@ -6,8 +6,8 @@
   Source: QuickSort.c
 ## Project
 ### Trie Tree  
-  Description: HuaweiOJ id=2283
-  Source:cfgfile_recv.c
+  Description: HuaweiOJ id=2283  
+  Source:cfgfile_recv.c  
 ### Longest Common Sub-string
-  Description: HuaweiOJ id=1997
-  Source:lcs.py
+  Description: HuaweiOJ id=1997  
+  Source:lcs.py  
