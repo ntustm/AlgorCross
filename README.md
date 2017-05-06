@@ -1,5 +1,5 @@
 # AlgorCross
-![banwei LOGO](/97b6d158ccbf6c81bce2797ab83eb13532fa407a.jpg)
+![banwei LOGO](/banwei.jpg)
 
 ## Library
 ### Quick Sort  
